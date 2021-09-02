@@ -1,0 +1,23 @@
+These notes are from the book: "Mastering CMake" by Ken Martin
+
+Structure of a CMake Project:
+
+Lowest Level: source files - C/C++ source code files
+
+Targets: the combination of source files to create an executable or a library
+
+Directory: a directory in the source tree that will often include a CMakeLists file (will likely have one or more targets associated with it)
+
+Local Generator: Contained in the directories and responsible for generating Makefiles or project files for the directory
+
+Global Generator: Oversees the build process and the local generators
+
+cmake class: creates and drives the global generator
+
+Questions I want to answer:
+
+1.) When building targets, you can either create a STATIC, SHARED, or MODULE.  These each have a purpose, but:
+    a.) When does it makes sense to build a static library?
+    b.) When do you want your library to be dynamic?
+    c.) Why would I want to use a MODULE?
+    d.) What is the difference between SHARED and STATIC?
