@@ -1,0 +1,3 @@
+/Users/keithguydo/Development/systemProgramming/IPC/NamedPipes/UsingMkFifo/build/CMakeFiles/rebuild_cache.dir
+/Users/keithguydo/Development/systemProgramming/IPC/NamedPipes/UsingMkFifo/build/CMakeFiles/edit_cache.dir
+/Users/keithguydo/Development/systemProgramming/IPC/NamedPipes/UsingMkFifo/build/CMakeFiles/FIFOWriteAndRead.dir
