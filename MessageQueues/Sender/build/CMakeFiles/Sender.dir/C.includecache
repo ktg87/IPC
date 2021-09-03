@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/keithguydo/Development/systemProgramming/IPC/MessageQueues/Sender/sender.c
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+string.h
+-
+errno.h
+-
+sys/types.h
+-
+sys/ipc.h
+-
+sys/msg.h
+-
+

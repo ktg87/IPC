@@ -9,6 +9,9 @@
 
 // Permissions for the Message Queue.
 #define PERMISSIONS 0777
+#define MSG_Q_FILE "/tmp/messagequeue.txt"
+#define TOUCH_CMD "touch /tmp/messagequeue.txt"
+#define RM_CMD "rm /tmp/messagequeue.txt"
 
 // Definition of Message Buffer
 struct messageBuffer 
@@ -25,6 +28,7 @@ int msqid;
 int len;
 int string_status;
 key_t key;
+extern int errno;
 
 // Function to send the data to the message queue.
 void sendMessage()
@@ -39,6 +43,7 @@ void sendMessage()
         // below condition Checks and throws an error and exit the message queue.
         if (msgsnd(msqid, &object, len+1, 0) == -1)
         {
+            printf("Something went wrong with msgsnd: %s", strerror(errno));
             perror("msgsnd");
             exit(1);
         }
@@ -51,6 +56,7 @@ void sendMessage()
   
     if (msgctl(msqid, IPC_RMID, NULL) == -1) 
     {
+        printf("Something went wrong with msgctl: %s", strerror(errno));
         perror("msgctl");
         exit(1);
     }
@@ -59,17 +65,19 @@ void sendMessage()
 }
 
 int main() 
-{
-    system("touch messagequeue.txt") ;
+{ 
+    system(TOUCH_CMD);
   
-    if ((key = ftok("messagequeue.txt", 'B')) == -1) 
+    if ((key = ftok(MSG_Q_FILE, 'B')) == -1) 
     {
+        printf("Something went wrong with ftok: %s", strerror(errno));
         perror("ftok");
         exit(1);
     }
   
     if ((msqid = msgget(key, PERMISSIONS | IPC_CREAT)) == -1) 
     {
+        printf("Something went wrong with msgget: %s", strerror(errno));
         perror("msgget");
         
         exit(1);
@@ -84,7 +92,7 @@ int main()
     sendMessage();
   
     // Deleting the created file
-    system("rm messagequeue.txt");
+    system(RM_CMD);
   
     return 0;
 }
